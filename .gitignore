@@ -19,7 +19,7 @@
 *.tar.gz
 *.rar
 
-#ignore idea files
+#ignoreme idea files
 .idea/*
 *.iml
 
