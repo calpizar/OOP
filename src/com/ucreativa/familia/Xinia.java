@@ -2,9 +2,21 @@ package com.ucreativa.familia;
 
 public class Xinia {
 
-    public Xinia(String saludo) {
+    private int age;
+    private String hobby;
 
+    public Xinia(String saludo) {
+        this.age = 56;
+        this.hobby = "Gardening";
         System.out.println(saludo);
     }
-
+    public void setAge(){
+        this.age = this.age + 1;
+        }
+   public int getAge(){
+        return this.age;
+        }
+   public String getHobby(){
+        return hobby;
+        }
 }
