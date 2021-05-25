@@ -12,8 +12,6 @@ public class Main {
 
         Carmen one = new Carmen();
 
-	    System.out.println("Hello World");
-
 	    Xinia two = new Xinia("Hola");
 
 	    two.setAge();

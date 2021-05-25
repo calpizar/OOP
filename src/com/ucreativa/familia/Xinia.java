@@ -6,7 +6,7 @@ public class Xinia {
     private String hobby;
 
     public Xinia(String saludo) {
-        this.age = 56;
+        this.age = 55;
         this.hobby = "Gardening";
         System.out.println(saludo);
     }
