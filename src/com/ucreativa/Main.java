@@ -10,12 +10,13 @@ public class Main {
 
     public static void main(String[] args) {
 
-        Carmen one = new Carmen();
+        Carmen one = new Carmen("Hola",33,"Painting");
 
-	    Xinia two = new Xinia("Hola");
+	    Xinia two = new Xinia("Hola",55,"Gardening");
 
 	    two.setAge();
 	    int age =two.getAge();
+
         System.out.println("My Age is: " + age);
         System.out.println("My hobby is : "  + two.getHobby());
     }

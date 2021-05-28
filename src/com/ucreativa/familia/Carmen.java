@@ -1,9 +1,9 @@
 package com.ucreativa.familia;
 
-public class Carmen {
+public class Carmen extends Xinia {
 
-    public Carmen() {
-
-        System.out.println("Yo soy Carmen");
+    public Carmen(String saludo, int age, String hobby) {
+        super(saludo, age, hobby);
     }
 }
+

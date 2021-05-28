@@ -5,7 +5,7 @@ public class Xinia {
     private int age;
     private String hobby;
 
-    public Xinia(String saludo) {
+    public Xinia(String saludo, int age, String hobby) {
         this.age = 55;
         this.hobby = "Gardening";
         System.out.println(saludo);
