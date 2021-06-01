@@ -1,10 +1,10 @@
 package com.ucreativa;
 
-import com.ucreativa.vacunacion.Amigo;
-import com.ucreativa.vacunacion.Familiar;
-import com.ucreativa.vacunacion.Persona;
-import com.ucreativa.vacunacion.Vacunas;
+import com.ucreativa.vacunacion.entities.Amigo;
+import com.ucreativa.vacunacion.entities.Familiar;
+import com.ucreativa.vacunacion.entities.Vacunas;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -20,7 +20,7 @@ public class Main {
 
         Amigo compa = new Amigo ("Juana", "12134325", 30, false,"Amigo","juana.perez");
 
-
+        SimpleDateFormat f = new SimpleDateFormat("dd/MM/yyyy");
         List <Vacunas> vacunas = new ArrayList<>();
         vacunas.add(new Vacunas(mama,"Pfizer", new Date()));
         vacunas.add(new Vacunas(hermano,"Pfizer", new Date()));
