@@ -3,11 +3,9 @@ package com.ucreativa;
 import com.ucreativa.vacunacion.entities.Amigo;
 import com.ucreativa.vacunacion.entities.Familiar;
 import com.ucreativa.vacunacion.entities.Persona;
-import com.ucreativa.vacunacion.entities.Vacunas;
+import com.ucreativa.vacunacion.repositories.InMemoryRepository;
 
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 import java.util.Scanner;
 
 public class Main {
@@ -15,13 +13,11 @@ public class Main {
     public static void main(String[] args) {
 
         Scanner in = new Scanner(System.in);
-
-        //create data base
-        List<Vacunas> db = new ArrayList<>();
+        InMemoryRepository repo = new InMemoryRepository();
+        String nombre, cedula, edad, riesgo, isAmigo, relacion, facebook, parentesco, marca, print;
+        Persona persona;
 
         while (true) {
-            String nombre, cedula, edad, riesgo, isAmigo, relacion, facebook, parentesco, marca, print;
-            Persona persona;
             System.out.println("Nombre: ");
             nombre = in.nextLine();
             System.out.println("Cedula: ");
@@ -45,13 +41,13 @@ public class Main {
             }
             System.out.println("Vacuna -- Marca: ");
             marca = in.nextLine();
-            db.add(new Vacunas(persona, marca, new Date()));
+            repo.save(persona, marca, new Date());
 
             System.out.println("Quiere imprimir Lista (S)?");
             print = in.nextLine();
             if (print.equals("S")) {
-                for (Vacunas item : db) {
-                    System.out.println(item.getPersona().getNombre() + " vacunado el " + item.getFecha());
+                for (String item : repo.get()) {
+                    System.out.println(item);
                 }
             }
         }
