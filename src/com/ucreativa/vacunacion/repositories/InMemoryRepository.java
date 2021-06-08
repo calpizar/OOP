@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-public class InMemoryRepository {
+public class InMemoryRepository implements Repository {
 
     private List<Vacunas> db;
 
@@ -28,4 +28,5 @@ public class InMemoryRepository {
         }
         return lines;
     }
+
 }
