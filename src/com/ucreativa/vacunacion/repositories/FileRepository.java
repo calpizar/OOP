@@ -19,7 +19,7 @@ public class FileRepository implements Repository{
     public void save (Persona persona, String marca, Date fecha){
 
         SimpleDateFormat format = new SimpleDateFormat("dd-MM-yyyy hh:mm:ss");
-        String text = persona.getNombre() + " " + marca + " " + format.format(fecha) + "n";
+        String text = persona.getNombre() + " " + marca + " " + format.format(fecha) + "\n";
         try {
             BufferedWriter writer = new BufferedWriter(new FileWriter(FILE_PATH,true));
             writer.append(text);
