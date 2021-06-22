@@ -15,6 +15,8 @@ public class Persona {
         this.edad = edad;
         this.riesgo = riesgo;
     }
+        public abstract String toString();
+
         public String getNombre () {
             return nombre;
         }

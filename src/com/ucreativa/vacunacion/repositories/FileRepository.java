@@ -3,13 +3,11 @@ package com.ucreativa.vacunacion.repositories;
 import com.ucreativa.vacunacion.entities.Persona;
 
 
-import javax.print.DocFlavor;
-import javax.xml.crypto.dsig.SignatureMethod;
+
 import java.io.*;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
-import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
 public class FileRepository implements Repository{
