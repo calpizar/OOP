@@ -4,30 +4,61 @@ import com.ucreativa.vacunacion.entities.Amigo;
 import com.ucreativa.vacunacion.entities.Familiar;
 import com.ucreativa.vacunacion.entities.Persona;
 import com.ucreativa.vacunacion.repositories.Repository;
+import jdk.swing.interop.SwingInterOpUtils;
 
+import java.sql.SQLOutput;
 import java.util.Date;
 import java.util.List;
 
 public class BitacoraService {
 
     private Repository repository;
+    private ContadorRiesgo contador;
 
     public BitacoraService(Repository repository){
         this.repository = repository;
+        this.contador = new ContadorRiesgo.getInstance();
     }
 
-    public void save(String nombre, String cedula, String txtEdad, boolean txtRiesgo, boolean txtIsAmigo, String relacion, String facebook, String parentesco, String marca){
+    public void save(String nombre, String cedula, String txtEdad,
+                     boolean riesgo, boolean isAmigo, String relacion,
+                     String facebook, String parentesco, String marca){
+
         int edad = Integer.parseInt(txtEdad);
-        Persona persona;
-        if (txtIsAmigo){
-            persona = new Amigo (nombre,cedula,edad,txtRiesgo,relacion,facebook);
-        }else{
-            persona = new Familiar(nombre,cedula,edad,txtRiesgo,parentesco);
+             String facebook, String parentesco, String marca) throws ErrorException {
+            int edad;
+            try {
+                edad = Integer.parseInt(txtEdad);
+            } catch (NumberFormatException x) {
+                throw new ErrorException(txtEdad);
+            }
+
+        if (riesgo){
+            this.contador.SumarRiesgo();
         }
-        this.repository.save(persona,marca, new Date());
-    }
+        Persona persona;
+            if (isAmigo){
+                if (isAmigo) {
+                    persona = new Amigo(nombre, cedula, edad, riesgo, relacion, facebook);
+                }else {
+                    persona = new Familiar(nombre, cedula, edad, riesgo, parentesco);
+                } else {
+                    if (relacion.equals("Hermano")) {
+                        persona = new Familiar(nombre, edad, riesgo, parentesco);
+                    } else {
+                        persona = new Familiar(nombre, cedula, edad, riesgo, parentesco);
+                    }
+
+                }
+                this.repository.save(persona, marca, new Date());
+            }
+
+            public List<String> get() {
+                return this.repository.get();
+                }
     public List<String> get(){
-        return this.repository;
+        System.out.println("La cantidad de personas con riesgo es: " +this.contador.getCantidadRiesgo());
+        return this.repository.get();
     }
 
 }
