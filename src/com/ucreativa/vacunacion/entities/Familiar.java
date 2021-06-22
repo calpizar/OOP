@@ -6,7 +6,7 @@ public class Familiar extends Persona {
 
 
     public Familiar(String nombre, String cedula, int edad, boolean riesgo, String parentestco) {
-        super(nombre, cedula, edad, riesgo);
+        super(nombre, "N/A", edad, riesgo);
         this.parentesco = parentesco;
     }
 
@@ -14,4 +14,7 @@ public class Familiar extends Persona {
         return this.parentesco;
     }
 
+    public String toString() {
+        return this.parentesco + " " + super.getNombre();
+    }
 }

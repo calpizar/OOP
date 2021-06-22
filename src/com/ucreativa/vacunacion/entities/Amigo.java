@@ -20,4 +20,8 @@ public class Amigo  extends Persona{
         return facebook;
     }
 
+    @Override
+    public String toString() {
+        return null;
+    }
 }

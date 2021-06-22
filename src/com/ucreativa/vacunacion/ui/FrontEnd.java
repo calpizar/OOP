@@ -96,7 +96,7 @@ public class FrontEnd extends JFrame {
 
                     String reporte = String.join("\n", service.get());
                     JOptionPane.showMessageDialog(((JButton) e.getSource()).getParent(), reporte);
-                } catch (ErrorEnEdadException error) {
+                } catch (ErrorException error) {
                     JOptionPane.showMessageDialog(((JButton) e.getSource()).getParent(),
                             error.getMessage());
                 }
@@ -122,6 +122,7 @@ public class FrontEnd extends JFrame {
         this.agregarComponente(txtParentesco);
         this.agregarComponente(lblMarca);
         this.agregarComponente(txtMarca);
+        this.agregarComponente(salvar);
 
     }
 }

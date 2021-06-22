@@ -4,9 +4,8 @@ import com.ucreativa.vacunacion.entities.Amigo;
 import com.ucreativa.vacunacion.entities.Familiar;
 import com.ucreativa.vacunacion.entities.Persona;
 import com.ucreativa.vacunacion.repositories.Repository;
-import jdk.swing.interop.SwingInterOpUtils;
+import com.ucreativa.vacunacion.ui.ErrorException;
 
-import java.sql.SQLOutput;
 import java.util.Date;
 import java.util.List;
 
@@ -17,48 +16,44 @@ public class BitacoraService {
 
     public BitacoraService(Repository repository){
         this.repository = repository;
-        this.contador = new ContadorRiesgo.getInstance();
+        this.contador = ContadorRiesgo.getInstance();
     }
 
     public void save(String nombre, String cedula, String txtEdad,
                      boolean riesgo, boolean isAmigo, String relacion,
-                     String facebook, String parentesco, String marca){
+                     String facebook, String parentesco, String marca) throws ErrorException {
 
-        int edad = Integer.parseInt(txtEdad);
-             String facebook, String parentesco, String marca) throws ErrorException {
-            int edad;
-            try {
-                edad = Integer.parseInt(txtEdad);
-            } catch (NumberFormatException x) {
-                throw new ErrorException(txtEdad);
-            }
+        int edad = 0;
 
-        if (riesgo){
-            this.contador.SumarRiesgo();
+        if (riesgo) {
+            this.contador.getInstance().SumarRiesgo();
         }
+
         Persona persona;
-            if (isAmigo){
-                if (isAmigo) {
-                    persona = new Amigo(nombre, cedula, edad, riesgo, relacion, facebook);
-                }else {
-                    persona = new Familiar(nombre, cedula, edad, riesgo, parentesco);
-                } else {
-                    if (relacion.equals("Hermano")) {
-                        persona = new Familiar(nombre, edad, riesgo, parentesco);
-                    } else {
-                        persona = new Familiar(nombre, cedula, edad, riesgo, parentesco);
-                    }
-
+        if (isAmigo) {
+            if (isAmigo) {
+                try {
+                    edad = Integer.parseInt(txtEdad);
+                } catch (NumberFormatException x) {
+                    throw new ErrorException(txtEdad);
                 }
-                this.repository.save(persona, marca, new Date());
             }
-
-            public List<String> get() {
-                return this.repository.get();
+            persona = new Amigo(nombre, cedula, edad, riesgo, relacion, facebook);
+        } else {
+                if (relacion.equals("Hermano")) {
+                    persona = new Familiar(nombre, nombre, edad, riesgo, parentesco);
+                } else {
+                    persona = new Familiar(nombre, cedula, edad, riesgo, parentesco);
                 }
-    public List<String> get(){
-        System.out.println("La cantidad de personas con riesgo es: " +this.contador.getCantidadRiesgo());
-        return this.repository.get();
+
+            }
+            this.repository.save(persona, marca, new Date());
+        }
+
+
+        public List<String> get(){
+            System.out.println("La cantidad de personas con riesgo es: " + this.contador.getCantidadRiesgo());
+            return this.repository.get();
+        }
     }
 
-}

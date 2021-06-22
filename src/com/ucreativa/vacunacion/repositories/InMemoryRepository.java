@@ -10,7 +10,7 @@ import java.util.List;
 
 public class InMemoryRepository implements Repository {
 
-    private List<Vacunas> db;
+    private final List<Vacunas> db;
 
     public InMemoryRepository(){
         this.db = new ArrayList<>();

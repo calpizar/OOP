@@ -6,7 +6,7 @@ public class ContadorRiesgo {
     private static ContadorRiesgo instancia;
 
     public static ContadorRiesgo getInstance(){
-        if (instancia = null){
+        if (instancia == null){
             instancia = new ContadorRiesgo();
         }
         return instancia;
